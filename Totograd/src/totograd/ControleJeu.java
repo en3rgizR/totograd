@@ -2,20 +2,19 @@ package totograd;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.FeatureDescriptor;
 
 public class ControleJeu implements ActionListener
 {
 
+	private FenetreJeu jeu;
 	private FenetreCreaPartie partie;
 	private FenetreHighScores high;
-	private FenetreConstructions construct;
-	private FenetreJeu jeu;
+	private FenetreConstructions constr;
+
 	
-	public ControleJeu(FenetreJeu jeu, FenetreCreaPartie partie, FenetreHighScores high, FenetreConstructions construct)
+	public ControleJeu(FenetreJeu jeu)
 	{
-		this.partie = partie;
-		this.high = high;
-		this.construct = construct;
 		this.jeu = jeu;
 	}
 	
@@ -24,17 +23,25 @@ public class ControleJeu implements ActionListener
 	{
 		String source = e.getActionCommand();
 		
-		if (source.equals("Jouer une partie")){
-			partie.createInterface();
-			partie.setVisible(true);
-		} else if (source.equals("High Scores")){
-			high.createInterface();
-			high.setVisible(true);
-		}else if(source.equals("Quitter")){
-			jeu.dispose();
-		} else if (source.equals("Construire")){
-			construct.setVisible(true);
+		
+		if (source.equals("Jouer une partie"))
+		{
+			System.out.println("jouer !");
+			partie = new FenetreCreaPartie(jeu);
+			
 		}
+		else if (source.equals("High Scores"))
+		{
+			high = new FenetreHighScores(jeu);
+		}
+		else if (source.equals("Construire"))
+		{
+			
+		}
+		else if(source.equals("Quitter"))
+		{
+			jeu.dispose();
+		} 
 
 	}
 

@@ -35,9 +35,10 @@ public class ControleCreaPartie implements ActionListener
 				adj = new AiredeJeu(200, 200);
 
 			adj.Initialize(10, 10);
+			
 			System.out.println("owner : "+crea.getOwner());
-			crea.getOwner().panmain.add(adj);
-			crea.getOwner().panmain.repaint();
+			crea.getOwner().panmain.add(adj, crea.getOwner().blayout.CENTER);
+			crea.getOwner().panmain.validate();
 		}
 	}
 }

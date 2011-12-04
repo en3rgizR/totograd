@@ -16,12 +16,7 @@ import javax.swing.JPanel;
 public class FenetreJeu extends JFrame
 {
 
-	private static FenetreJeu instance;
-
 	private JButton construire;
-	private FenetreCreaPartie fenetre1 = FenetreCreaPartie.getInstance(this);
-	private FenetreHighScores fenetre2 = FenetreHighScores.getInstance(this);
-	private FenetreConstructions fenetre3 = FenetreConstructions.getInstance(this);
 	private JMenuBar bar;
 	private JMenu menu;
 	private JMenuItem jouer;
@@ -34,33 +29,20 @@ public class FenetreJeu extends JFrame
 
 	/**
 	 * 
-	 * @return
-	 */
-	public static FenetreJeu getInstance() {		
-		if (null == instance) {
-			instance = new FenetreJeu();
-		}
-		return instance;
-	}
-
-	/**
-	 * 
 	 * 
 	 */
 	private FenetreJeu()
 	{
 		super();
-		setTitle("TotoGrad");
-		//fenetre1 = FenetreCreaPartie.getInstance(this);
-		ctrljeu = new ControleJeu(this, fenetre1, fenetre2, fenetre3);	
+		ctrljeu = new ControleJeu(this);
 		createInterface();
 		setLocationRelativeTo(null);
-		setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		bestScores = new Hashtable<String, Integer>(10);
 		bestScores.put("Toto", 5000);
 		bestScores.put("Jenna", 3500);
 		bestScores.put("lio", 7895);
+		
 	}
 
 	/**
@@ -92,10 +74,6 @@ public class FenetreJeu extends JFrame
 		construire.addActionListener(ctrljeu);
 		panmain.add(construire, blayout.EAST);
 
-		/*AiredeJeu adj = new AiredeJeu(100, 100);
-		adj.Initialize(10, 10);
-		add(adj, BorderLayout.CENTER);
-		 */
 	}
 
 	public Hashtable<String, Integer> getHT(){
@@ -108,12 +86,13 @@ public class FenetreJeu extends JFrame
 	 */
 	public static void main(String[] args)
 	{
-		FenetreJeu jeu = getInstance();
+		FenetreJeu jeu = new FenetreJeu();
 		jeu.setSize(1000, 600);
 		jeu.setVisible(true);
-		System.out.println("jeu : "+jeu);
+		jeu.setResizable(true);
 
 	}
 
 
 }
+

@@ -48,24 +48,25 @@ public class FenetreCreaPartie extends JDialog
 	 * 
 	 * @param owner
 	 */
-	private FenetreCreaPartie(FenetreJeu owner)
+	public FenetreCreaPartie(FenetreJeu owner)
 	{
 		super(owner);
 		this.owner = owner;
 		System.out.println("const owner : "+owner);
 		ctrlcrea = new ControleCreaPartie(this);
+		createInterface();
 		setTitle("Creer une partie");
 		setLocationRelativeTo(owner);
 		setResizable(false);
-		setSize(200,200);
-		//createInterface();
 		setLocationRelativeTo(null);
+		setVisible(true);
 	}
 	
 	/**
 	 * 
 	 */
-	public void createInterface(){			
+	public void createInterface()
+	{			
 			this.setSize(400,150);
 			
 			panel = new JPanel();
