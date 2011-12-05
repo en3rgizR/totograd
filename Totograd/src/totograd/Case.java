@@ -37,7 +37,6 @@ class Case extends JPanel
 		// les évènements souris sur la case sont écoutés par la case elle-même
 		ctrlcase = new ControleCase(this);
 		addMouseListener(ctrlcase);
-
 		couleur=c;
 		click=false;
 		this.x=x;
@@ -69,5 +68,11 @@ class Case extends JPanel
 	public void setOccupe(boolean status) 
 	{
 		this.occupe = status;
+	}
+	
+	public void AfficheErreur(String error_msg, String error_title)
+	{
+		JOptionPane.showMessageDialog(this , error_msg , error_title, JOptionPane.WARNING_MESSAGE);
+
 	}
 }
