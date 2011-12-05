@@ -1,8 +1,7 @@
 package totograd;
 
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.GridLayout;
 import java.util.Hashtable;
 
 import javax.swing.ImageIcon;
@@ -16,8 +15,6 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class FenetreJeu extends JFrame
 {
-
-	private JButton construire;
 	private JMenuBar bar;
 	private JMenu menu;
 	private JMenuItem jouer;
@@ -29,6 +26,9 @@ public class FenetreJeu extends JFrame
 	public JPanel panmain;
 	public BorderLayout blayout;
 	private Jeu jeu;
+	private JPanel panelbas;
+	private JButton construire;
+	private JButton detruire;
 
 	/**
 	 * @param jeu 
@@ -80,10 +80,14 @@ public class FenetreJeu extends JFrame
 		bar.add(clock);
 		setJMenuBar(bar);
 
-		
+		panelbas = new JPanel(new GridLayout(2,1));
 		construire = new JButton("Construire");
 		construire.addActionListener(ctrljeu);
-		panmain.add(construire, blayout.EAST);
+		panelbas.add(construire);
+		detruire = new JButton("Detruire");
+		panelbas.add(detruire);
+		
+		panmain.add(panelbas, BorderLayout.EAST);
 
 	}
 

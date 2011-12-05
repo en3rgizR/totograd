@@ -12,18 +12,18 @@ public class ControleJeu implements ActionListener
 	private FenetreHighScores high;
 	private FenetreConstructions constr;
 
-	
+
 	public ControleJeu(FenetreJeu fenjeu)
 	{
 		this.fenjeu = fenjeu;
 	}
-	
-	
+
+
 	public void actionPerformed(ActionEvent e) 
 	{
 		String source = e.getActionCommand();
-		
-		
+
+
 		if (source.equals("Jouer une partie"))
 		{
 			// On arrete le timer de la partie précédente pour eviter des problemes de thread
@@ -32,7 +32,7 @@ public class ControleJeu implements ActionListener
 				fenpartie.getControleur().tps.timer.cancel();
 			}
 			catch(NullPointerException npe){} // Si aucune partie n'a deja etre cree..
-			
+
 			fenpartie = new FenetreCreaPartie(fenjeu);			
 		}
 		else if (source.equals("High Scores"))
@@ -41,12 +41,13 @@ public class ControleJeu implements ActionListener
 		}
 		else if (source.equals("Construire"))
 		{
-			
+			constr = new FenetreConstructions(fenjeu);
+			constr.setVisible(true);
 		}
 		else if(source.equals("Quitter"))
 		{
 			fenjeu.dispose();
-			fenpartie.getControleur().tps.timer.cancel(); // ne pas oublier de fermer la le thread
+			fenpartie.getControleur().tps.timer.cancel(); // ne pas oublier de fermer le thread
 		} 
 
 	}
