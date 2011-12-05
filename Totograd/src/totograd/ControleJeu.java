@@ -39,11 +39,6 @@ public class ControleJeu implements ActionListener
 		{
 			high = new FenetreHighScores(fenjeu);
 		}
-		else if (source.equals("Construire"))
-		{
-			constr = new FenetreConstructions(fenjeu);
-			constr.setVisible(true);
-		}
 		else if(source.equals("Quitter"))
 		{
 			fenjeu.dispose();

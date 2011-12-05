@@ -34,7 +34,7 @@ public class ControleCreaPartie implements ActionListener
 			{
 				partie = new Partie(1000, 100, 50, crea.getNom().getText(), crea.getTaille().getSelectedItem());
 			}
-			partie.afficherAire(crea.getOwner().panmain, crea.getOwner().blayout);
+			partie.afficherAire(crea.getOwner().panmain);
 		}
 		crea.dispose();
 	}

@@ -10,9 +10,11 @@ import java.awt.event.MouseMotionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 
-public class ControleCase extends JFrame implements MouseListener
+public class ControleCase extends JFrame implements MouseListener, ActionListener
 {
 
 	Case pancase;
@@ -29,6 +31,15 @@ public class ControleCase extends JFrame implements MouseListener
 		{
 			if(pancase.getBackground() == Color.GRAY)
 				pancase.AfficheErreur("Cette case est deja occupe par une foret (lol)", "Attention");
+		}
+		else
+		{
+			pancase.getConstruire().setEnabled(true);
+			pancase.getDetruire().setEnabled(true);
+			if(e.getButton() == e.BUTTON3)
+			{
+				pancase.getPopup().show(pancase, e.getX(), e.getY());
+			}
 		}
 	}
 
@@ -58,5 +69,19 @@ public class ControleCase extends JFrame implements MouseListener
 	}
 
 
+
+	@Override
+	public void actionPerformed(ActionEvent ae) 
+	{
+		String source = ae.getActionCommand();
+		if(source.equals("Construire un batiment"))
+		{
+			new FenetreConstructions();
+		}
+		else if(source.equals("Detruire le batiment"))
+		{
+			
+		}
+	}
 
 }

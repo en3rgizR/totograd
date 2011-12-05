@@ -57,8 +57,8 @@ public class FenetreJeu extends JFrame
 	{
 		panmain = new JPanel();
 		setContentPane(panmain);
-		blayout = new BorderLayout();
-		panmain.setLayout(blayout);
+		GridLayout gl = new GridLayout(1, 0);
+		panmain.setLayout(gl);
 	
 		bar = new JMenuBar();
 		menu = new JMenu("Menu");
@@ -80,18 +80,10 @@ public class FenetreJeu extends JFrame
 		bar.add(clock);
 		setJMenuBar(bar);
 
-		panelbas = new JPanel(new GridLayout(2,1));
-		construire = new JButton("Construire");
-		construire.addActionListener(ctrljeu);
-		panelbas.add(construire);
-		detruire = new JButton("Detruire");
-		panelbas.add(detruire);
-		
-		panmain.add(panelbas, BorderLayout.EAST);
-
 	}
 
-	public Hashtable<String, Integer> getHT(){
+	public Hashtable<String, Integer> getHT()
+	{
 		return bestScores;
 	}
 	

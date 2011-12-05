@@ -24,7 +24,9 @@ class Case extends JPanel
 	private static Case destination=null;
 	private boolean occupe=false;
 	private ControleCase ctrlcase;
-	
+	private JPopupMenu popup;
+	private JMenuItem construire;
+	private JMenuItem detruire;
 
 	public Case(Color c, int x, int y)
 	{
@@ -41,6 +43,7 @@ class Case extends JPanel
 		click=false;
 		this.x=x;
 		this.y=y;
+		creerMenuContextuel();
 	}
 
 	// cette fonction remet la case à sa couleur d'origine
@@ -74,5 +77,31 @@ class Case extends JPanel
 	{
 		JOptionPane.showMessageDialog(this , error_msg , error_title, JOptionPane.WARNING_MESSAGE);
 
+	}
+	
+	public void creerMenuContextuel()
+	{
+		popup = new JPopupMenu();
+		construire = new JMenuItem("Construire un batiment");
+		detruire = new JMenuItem("Detruire le batiment");
+		popup.add(construire);
+		popup.add(detruire);
+		construire.addActionListener(ctrlcase);
+		detruire.addActionListener(ctrlcase);
+	}
+	
+	public JPopupMenu getPopup()
+	{
+		return popup;
+	}
+	
+	public JMenuItem getConstruire()
+	{
+		return construire;
+	}
+	
+	public JMenuItem getDetruire()
+	{
+		return detruire;
 	}
 }

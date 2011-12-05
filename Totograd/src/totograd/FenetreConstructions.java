@@ -44,14 +44,17 @@ public class FenetreConstructions extends JDialog{
 	private JButton annuler;
 	
 	
-	public FenetreConstructions(JFrame owner){
-		super(owner);
+	public FenetreConstructions()
+	{
+		//super(owner);
 		setTitle("Construire");
 		createInterface();
 		setLocationRelativeTo(null);
+		setVisible(true);
 	}
 	
-	public void createInterface(){
+	public void createInterface()
+	{
 		setSize(500,500);
 		tp = new JTabbedPane(SwingConstants.TOP);
 		//Onglet Habitations

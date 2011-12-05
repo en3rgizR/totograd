@@ -78,18 +78,18 @@ public class Partie
 			aire = new AiredeJeu(65, 65);
 	}
 
-	public void afficherAire(JPanel panel, BorderLayout blayout)
+	public void afficherAire(JPanel panel)
 	{
 		// Si l'aire de jeu existe deja, on la vire et on met l'autre
 		try
 		{
-			panel.remove(1);
+			panel.remove(0);
 		}
 		catch(ArrayIndexOutOfBoundsException e)
 		{
 			// Si elle n'existe pas, pas besoin de la virer => on fait rien
 		}
-		panel.add(aire, blayout.CENTER);
+		panel.add(aire);
 		panel.revalidate();
 		panel.repaint();
 	}
