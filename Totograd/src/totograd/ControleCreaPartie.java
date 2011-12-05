@@ -23,13 +23,12 @@ public class ControleCreaPartie implements ActionListener
 		{
 			if(crea.getType().getSelectedItem().equals("Libre"))
 			{
-				partie = new Partie(1000, 100, 50, crea.getNom().getText(), crea.getTaille().getSelectedItem(), tps);
+				partie = new Partie(1000, 100, 50, crea.getNom().getText(), crea.getTaille().getSelectedItem());
 				tps = new Temps(0, 2, crea.getOwner(), partie);
-
 			}
 			else if(crea.getType().getSelectedItem().equals("Compte a rebours"))
 			{
-				partie = new Partie(1000, 100, 50, crea.getNom().getText(), crea.getTaille().getSelectedItem(), tps);
+				partie = new Partie(1000, 100, 50, crea.getNom().getText(), crea.getTaille().getSelectedItem(), tps); // TODO : Compte a rebours
 			}
 			else
 			{

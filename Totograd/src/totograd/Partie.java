@@ -18,7 +18,6 @@ public class Partie
 	private int limite_nbhabitants=99999;
 	private Temps temps;
 	private AiredeJeu aire;
-	private Temps rebours;
 	public int jour;
 	public int mois;
 	public int annee;
@@ -46,11 +45,10 @@ public class Partie
 		this.biens = biens;
 		this.nbhabitants = nbhabitants;
 		this.joueur = joueur;
-		this.rebours = temps;
 		creerAire(type.toString());
+		this.temps = temps;
 		jour = mois = 1;
 		annee = 2011;
-
 	}
 
 

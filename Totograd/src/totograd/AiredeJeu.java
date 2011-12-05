@@ -33,6 +33,17 @@ public class AiredeJeu extends JPanel
 				this.add(quadrillage[j][i]);
 			}
 		}
+		
+		// On va generer des cases occupes aleatoires (5% au plus des cases totale d'une partie)
+		int nbre_random = (int)(Math.random()*((longueur*longueur) * 5/100));
+		int randomx, randomy;
+		for(i=0; i < nbre_random; i++)
+		{
+			randomx = (int) (Math.random()*longueur);
+			randomy = (int) (Math.random()*longueur);
+			quadrillage[randomx][randomy].setBackground(Color.GRAY);
+			quadrillage[randomx][randomy].setOccupe(true);
+		}
 	}
 
 }

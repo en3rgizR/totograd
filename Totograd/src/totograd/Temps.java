@@ -15,7 +15,7 @@ public class Temps
     public Temps(int start, int temps, FenetreJeu fenjeu, Partie partie) 
     {
         timer = new Timer();
-        timer.scheduleAtFixedRate(new TempsTask(fenjeu, partie), start, temps * 100); // 1000 car Millisecondes ! 
+        timer.scheduleAtFixedRate(new TempsTask(fenjeu, partie), start, temps * 300); // 1000 car Millisecondes ! 
 	}
     
     public class TempsTask extends TimerTask 
@@ -31,7 +31,7 @@ public class Temps
 		public void run() 
     	{
     		partie.jour++;
-    		if(partie.jour >= 30)
+    		if(partie.jour > 30)
     		{
     			partie.jour=1;
     			partie.mois++;

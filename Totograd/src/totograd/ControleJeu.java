@@ -26,8 +26,14 @@ public class ControleJeu implements ActionListener
 		
 		if (source.equals("Jouer une partie"))
 		{
-			fenpartie = new FenetreCreaPartie(fenjeu);
+			// On arrete le timer de la partie précédente pour eviter des problemes de thread
+			try
+			{
+				fenpartie.getControleur().tps.timer.cancel();
+			}
+			catch(NullPointerException npe){} // Si aucune partie n'a deja etre cree..
 			
+			fenpartie = new FenetreCreaPartie(fenjeu);			
 		}
 		else if (source.equals("High Scores"))
 		{

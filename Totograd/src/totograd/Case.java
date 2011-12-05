@@ -61,4 +61,13 @@ class Case extends JPanel
 		super.paintComponent(g); 
 	}
 
+	public boolean getOccupe()
+	{
+		return occupe;
+	}
+
+	public void setOccupe(boolean status) 
+	{
+		this.occupe = status;
+	}
 }
