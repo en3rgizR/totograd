@@ -22,10 +22,9 @@ public class ControleCase extends JFrame implements MouseListener
 		this.pancase = pancase;
 	}
 
-	@Override
+	
 	public void mouseClicked(MouseEvent e) 
 	{
-		System.out.println("click");
 		if( pancase.getOccupe() )
 		{
 			if(pancase.getBackground() == Color.GRAY)

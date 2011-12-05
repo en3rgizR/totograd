@@ -11,7 +11,7 @@ public class Partie
 	private int biens;
 	private int nbhabitants;
 	private String joueur;
-	private String score;
+	private int score;
 	// limite_X => pour le mode objectif
 	private int limite_argent=99999;
 	private int limite_biens=99999;
@@ -93,4 +93,10 @@ public class Partie
 		panel.revalidate();
 		panel.repaint();
 	}
+	
+	public int getScore()
+	{
+		return score;
+	}
+	
 }
