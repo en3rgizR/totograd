@@ -7,9 +7,9 @@ import javax.swing.*;
 public class AiredeJeu extends JPanel
 {
 	private Case quadrillage[][];
+	private GridLayout grille;
 	private int largeur;
 	private int longueur;
-	private GridLayout grille;
 	
 	public AiredeJeu(int largeur,int longueur)
 	{
@@ -18,18 +18,19 @@ public class AiredeJeu extends JPanel
 		this.quadrillage = new Case[largeur][longueur];
 		grille = new GridLayout(longueur, largeur);
 		this.setLayout(grille);
+		Initialize();
 		
 	}
 	
-	public void Initialize(int dimx, int dimy)
+	public void Initialize()
 	{
 		int i, j;
 		for(i=0; i < largeur; i++)
 		{
 			for(j=0; j < longueur; j++)
 			{
-				quadrillage[i][j] = new Case(Color.GREEN, i, j, dimx, dimy );
-				this.add(quadrillage[i][j]);
+				quadrillage[j][i] = new Case(Color.GREEN, j, i);
+				this.add(quadrillage[j][i]);
 			}
 		}
 	}

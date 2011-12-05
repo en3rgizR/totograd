@@ -16,9 +16,7 @@ import javax.swing.JTextField;
 @SuppressWarnings("serial")
 public class FenetreCreaPartie extends JDialog
 {
-	
-	private static FenetreCreaPartie instance;
-	
+		
 	private JButton ok;
 	private JButton annuler;
 	private JPanel panel;
@@ -31,19 +29,7 @@ public class FenetreCreaPartie extends JDialog
 	private ControleCreaPartie ctrlcrea;
 	private FenetreJeu owner;
 	
-	/**
-	 * 
-	 * @param owner
-	 * @return
-	 */
-	public static FenetreCreaPartie getInstance(FenetreJeu owner) {
-		
-        if (null == instance) {
-            instance = new FenetreCreaPartie(owner);
-        }
-        return instance;
-    }
-	
+
 	/**
 	 * 
 	 * @param owner
@@ -52,9 +38,9 @@ public class FenetreCreaPartie extends JDialog
 	{
 		super(owner);
 		this.owner = owner;
-		System.out.println("const owner : "+owner);
 		ctrlcrea = new ControleCreaPartie(this);
 		createInterface();
+		pack(); // resize en fonction de la place des composants dans la fenetre
 		setTitle("Creer une partie");
 		setLocationRelativeTo(owner);
 		setResizable(false);
@@ -67,7 +53,6 @@ public class FenetreCreaPartie extends JDialog
 	 */
 	public void createInterface()
 	{			
-			this.setSize(400,150);
 			
 			panel = new JPanel();
 			panel.setLayout( new GridBagLayout());
@@ -86,7 +71,7 @@ public class FenetreCreaPartie extends JDialog
 			gbc.gridy=1;
 			panel.add(ltype, gbc);
 			
-			String[] choix1 = {"Libre","Compte a rebours"};
+			String[] choix1 = {"Libre","Compte a rebours", "Objectif"};
 			cbTypePartie = new JComboBox(choix1);
 			gbc.gridx=1;
 			panel.add(cbTypePartie, gbc);
@@ -123,6 +108,21 @@ public class FenetreCreaPartie extends JDialog
 	public JComboBox getTaille()
 	{
 		return cbTailleGrille;
+	}
+	
+	public JComboBox getType()
+	{
+		return cbTypePartie;
+	}
+	
+	public JTextField getNom()
+	{
+		return tfNom;
+	}
+	
+	public ControleCreaPartie getControleur()
+	{
+		return ctrlcrea;
 	}
 
 }

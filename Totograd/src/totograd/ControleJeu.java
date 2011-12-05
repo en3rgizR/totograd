@@ -7,15 +7,15 @@ import java.beans.FeatureDescriptor;
 public class ControleJeu implements ActionListener
 {
 
-	private FenetreJeu jeu;
-	private FenetreCreaPartie partie;
+	private FenetreJeu fenjeu;
+	private FenetreCreaPartie fenpartie;
 	private FenetreHighScores high;
 	private FenetreConstructions constr;
 
 	
-	public ControleJeu(FenetreJeu jeu)
+	public ControleJeu(FenetreJeu fenjeu)
 	{
-		this.jeu = jeu;
+		this.fenjeu = fenjeu;
 	}
 	
 	
@@ -26,13 +26,12 @@ public class ControleJeu implements ActionListener
 		
 		if (source.equals("Jouer une partie"))
 		{
-			System.out.println("jouer !");
-			partie = new FenetreCreaPartie(jeu);
+			fenpartie = new FenetreCreaPartie(fenjeu);
 			
 		}
 		else if (source.equals("High Scores"))
 		{
-			high = new FenetreHighScores(jeu);
+			high = new FenetreHighScores(fenjeu);
 		}
 		else if (source.equals("Construire"))
 		{
@@ -40,7 +39,8 @@ public class ControleJeu implements ActionListener
 		}
 		else if(source.equals("Quitter"))
 		{
-			jeu.dispose();
+			fenjeu.dispose();
+			fenpartie.getControleur().tps.timer.cancel(); // ne pas oublier de fermer la le thread
 		} 
 
 	}

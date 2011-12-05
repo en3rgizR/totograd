@@ -7,38 +7,36 @@ public class ControleCreaPartie implements ActionListener
 {
 
 	private FenetreCreaPartie crea;
+	private Partie partie;
+	Temps tps;
 
 	public ControleCreaPartie(FenetreCreaPartie crea) 
 	{
 		this.crea = crea;
 	}
 
-	@Override
+
 	public void actionPerformed(ActionEvent e) 
 	{
-		Object source = e.getActionCommand();
-		if(source.equals("Annuler")){
-			crea.setVisible(false);
-		}
-		else if(source.equals("OK"))
+		String source = e.getActionCommand();
+		if(source.equals("OK"))
 		{
-			crea.setVisible(false);
-			AiredeJeu adj;
-			if( crea.getTaille().getSelectedItem().equals("Petite") )
+			if(crea.getType().getSelectedItem().equals("Libre"))
 			{
-				System.out.println("petite");
-				adj = new AiredeJeu(50, 50);
-			}
-			else if (  crea.getTaille().getSelectedItem().equals("Moyenne")  )
-				adj = new AiredeJeu(100, 100);
-			else
-				adj = new AiredeJeu(200, 200);
+				partie = new Partie(1000, 100, 50, crea.getNom().getText(), crea.getTaille().getSelectedItem(), tps);
+				tps = new Temps(0, 2, crea.getOwner(), partie);
 
-			adj.Initialize(10, 10);
-			
-			System.out.println("owner : "+crea.getOwner());
-			crea.getOwner().panmain.add(adj, crea.getOwner().blayout.CENTER);
-			crea.getOwner().panmain.validate();
+			}
+			else if(crea.getType().getSelectedItem().equals("Compte a rebours"))
+			{
+				partie = new Partie(1000, 100, 50, crea.getNom().getText(), crea.getTaille().getSelectedItem(), tps);
+			}
+			else
+			{
+				partie = new Partie(1000, 100, 50, crea.getNom().getText(), crea.getTaille().getSelectedItem());
+			}
+			partie.afficherAire(crea.getOwner().panmain, crea.getOwner().blayout);
 		}
+		crea.dispose();
 	}
 }

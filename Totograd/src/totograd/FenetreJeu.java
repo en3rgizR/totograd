@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Hashtable;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -22,26 +23,30 @@ public class FenetreJeu extends JFrame
 	private JMenuItem jouer;
 	private JMenuItem quitter;
 	private JMenuItem highScores;
+	public JMenu clock;
 	private Hashtable<String, Integer> bestScores;
 	private ControleJeu ctrljeu;
 	public JPanel panmain;
 	public BorderLayout blayout;
+	private Jeu jeu;
 
 	/**
+	 * @param jeu 
 	 * 
 	 * 
 	 */
-	private FenetreJeu()
+	FenetreJeu(Jeu jeu)
 	{
 		super();
+		this.jeu = jeu;
 		ctrljeu = new ControleJeu(this);
 		createInterface();
-		setLocationRelativeTo(null);
+		//setLocationRelativeTo(null);
+		this.setSize(1250, 650);
+		this.setVisible(true);
+		this.setResizable(true);
+		this.setLocation(50, 50);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		bestScores = new Hashtable<String, Integer>(10);
-		bestScores.put("Toto", 5000);
-		bestScores.put("Jenna", 3500);
-		bestScores.put("lio", 7895);
 		
 	}
 
@@ -54,9 +59,13 @@ public class FenetreJeu extends JFrame
 		setContentPane(panmain);
 		blayout = new BorderLayout();
 		panmain.setLayout(blayout);
-
+	
 		bar = new JMenuBar();
 		menu = new JMenu("Menu");
+		menu.addSeparator();
+
+		clock = new JMenu("01/01/2011");
+		clock.setIcon(new ImageIcon(getClass().getResource("calendrier.png")));
 		menu.addActionListener(ctrljeu);
 		jouer = new JMenuItem("Jouer une partie");
 		jouer.addActionListener(ctrljeu);
@@ -68,8 +77,10 @@ public class FenetreJeu extends JFrame
 		quitter.addActionListener(ctrljeu);
 		menu.add(quitter);
 		bar.add(menu);
+		bar.add(clock);
 		setJMenuBar(bar);
 
+		
 		construire = new JButton("Construire");
 		construire.addActionListener(ctrljeu);
 		panmain.add(construire, blayout.EAST);
@@ -79,19 +90,12 @@ public class FenetreJeu extends JFrame
 	public Hashtable<String, Integer> getHT(){
 		return bestScores;
 	}
-
-	/**
-	 * 
-	 * @param args
-	 */
-	public static void main(String[] args)
+	
+	public Jeu getJeu()
 	{
-		FenetreJeu jeu = new FenetreJeu();
-		jeu.setSize(1000, 600);
-		jeu.setVisible(true);
-		jeu.setResizable(true);
-
+		return jeu;
 	}
+
 
 
 }
