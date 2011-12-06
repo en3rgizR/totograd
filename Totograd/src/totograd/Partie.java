@@ -7,9 +7,11 @@ import javax.swing.JPanel;
 public class Partie
 {
 
-	private int argent; 
-	private int biens;
-	private int nbhabitants;
+	public int argent; 
+	public int biens;
+	public int nbhabitants;
+	public int habitant_courant;
+	public float attractivite;
 	private String joueur;
 	private int score;
 	// limite_X => pour le mode objectif
@@ -21,20 +23,26 @@ public class Partie
 	public int jour;
 	public int mois;
 	public int annee;
-	
-
+	private FenetreJeu fenjeu;
 
 
 	// Pour la partie en mode "libre"
-	Partie(int argent, int biens, int nbhabitants, String joueur, Object type)
+	Partie(int argent, int biens, int nbhabitants, String joueur, Object type, FenetreJeu fenjeu)
 	{
 		this.argent = argent;
 		this.biens = biens;
 		this.nbhabitants = nbhabitants;
 		this.joueur = joueur;
+		this.fenjeu = fenjeu;
+		habitant_courant = 0;
 		creerAire(type.toString());
+		attractivite = 1;
 		jour = mois = 1;
 		annee = 2011;
+		
+		fenjeu.getArgent().setText(""+argent);
+		fenjeu.getHabitants().setText(habitant_courant+"/"+nbhabitants);
+		fenjeu.getBiens().setText(""+biens);
 
 	}
 
@@ -65,17 +73,18 @@ public class Partie
 		creerAire(type.toString());
 		jour = mois = 1;
 		annee = 2011;
+		
 
 	}
 
 	private void creerAire(String type)
 	{
 		if(type.equals("Petite"))
-			aire = new AiredeJeu(35, 35);
+			aire = new AiredeJeu(35, 35, this);
 		else if(type.equals("Moyenne"))
-			aire = new AiredeJeu(50, 50);
+			aire = new AiredeJeu(50, 50, this);
 		else if(type.equals("Grande"))
-			aire = new AiredeJeu(65, 65);
+			aire = new AiredeJeu(65, 65, this);
 	}
 
 	public void afficherAire(JPanel panel)
@@ -98,5 +107,16 @@ public class Partie
 	{
 		return score;
 	}
+	
+	public FenetreJeu getFenJeu()
+	{
+		return fenjeu;
+	}
+
+	public AiredeJeu getAire() 
+	{
+		return aire;
+	}
+
 	
 }

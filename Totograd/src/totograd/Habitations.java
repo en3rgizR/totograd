@@ -1,11 +1,20 @@
 package totograd;
 
-abstract class Habitations 
-{
+import java.awt.Color;
 
-	int capacite;
-	public Habitations(int capacite)
+abstract class Habitations extends Batiments
+{
+	private final static Color couleur_habitat = Color.PINK;
+
+	Habitations(int cout_argent, int r_argent, int r_personnes, int longueur, int largeur, Case c) 
 	{
-		this.capacite = capacite;
+		super(cout_argent, couleur_habitat, r_argent, r_personnes, longueur, largeur, c);
 	}
+	
+	public int getCapacite()
+	{
+		return r_personnes;
+	}
+
+
 }

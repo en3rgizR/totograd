@@ -27,8 +27,10 @@ class Case extends JPanel
 	private JPopupMenu popup;
 	private JMenuItem construire;
 	private JMenuItem detruire;
+	private AiredeJeu aire;
+	private Construction construction;
 
-	public Case(Color c, int x, int y)
+	public Case(Color c, int x, int y, AiredeJeu aire)
 	{
 		// setBackground affecte la couleur de fond
 		setBackground(c);	
@@ -43,6 +45,7 @@ class Case extends JPanel
 		click=false;
 		this.x=x;
 		this.y=y;
+		this.aire=aire;
 		creerMenuContextuel();
 	}
 
@@ -104,4 +107,21 @@ class Case extends JPanel
 	{
 		return detruire;
 	}
+	
+	public AiredeJeu getAire()
+	{
+		return aire;
+	}
+	
+	public void setConstruction(Construction c)
+	{
+		this.construction = c;
+	}
+	
+	public Construction getConstruction()
+	{
+		return construction;
+	}
+	
+	
 }

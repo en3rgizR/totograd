@@ -11,22 +11,26 @@ abstract class Batiments extends Construction
 	int r_biens;
 	int r_personnes;
 	int r_genere;
-	int nbcases_longueur;
-	int nbcases_largeur;
+	Case _case;
+	Case[] zone_case;
 	
-	Batiments(int cout_argent, Color color_construc, int infl_euclid, int influ_manhattan,int r_argent,int r_biens,int r_personnes
-			,int r_genere, int nbcases_longueur, int nbcases_largeur ) 
+	// Constructeur specialise dans les habitations (rappel : r_argent designe la taxe d'habitation)
+	Batiments(int cout_argent, Color color_construc, int r_argent, int r_personnes, int longueur, int largeur, Case c)
 	{
-		super(cout_argent, color_construc);
-		this.infl_euclid = infl_euclid;
-		this.influ_manhattan = influ_manhattan;
+		super(cout_argent, color_construc, longueur, largeur, c);
 		this.r_argent = r_argent;
-		this.r_biens = r_biens;
 		this.r_personnes = r_personnes;
-		this.r_genere = r_genere;
-		this.nbcases_longueur = nbcases_longueur;
-		this.nbcases_largeur = nbcases_largeur;
+		this._case=c;
 	}
 	
+	public void gestionAffichage()
+	{
+		int tmp;
+		tmp = r_personnes+ _case.getAire().getPartie().nbhabitants;
+		_case.getAire().getPartie().nbhabitants = tmp;
+		_case.getAire().getPartie().getFenJeu().habitants.setText(_case.getAire().getPartie().habitant_courant+"/"+tmp);
+
+	}
 
 }
+

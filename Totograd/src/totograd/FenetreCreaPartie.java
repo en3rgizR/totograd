@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.text.JTextComponent;
 
 @SuppressWarnings("serial")
 public class FenetreCreaPartie extends JDialog
@@ -124,5 +125,7 @@ public class FenetreCreaPartie extends JDialog
 	{
 		return ctrlcrea;
 	}
+
+
 
 }

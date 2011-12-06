@@ -21,6 +21,9 @@ public class FenetreJeu extends JFrame
 	private JMenuItem quitter;
 	private JMenuItem highScores;
 	public JMenu clock;
+	public JMenu argent;
+	public JMenu habitants;
+	public JMenu biens;
 	private Hashtable<String, Integer> bestScores;
 	private ControleJeu ctrljeu;
 	public JPanel panmain;
@@ -66,6 +69,14 @@ public class FenetreJeu extends JFrame
 
 		clock = new JMenu("01/01/2011");
 		clock.setIcon(new ImageIcon(getClass().getResource("calendrier.png")));
+		
+		argent = new JMenu("0          ");
+		argent.setIcon(new ImageIcon(getClass().getResource("argent.png")));
+		habitants = new JMenu("0         ");
+		habitants.setIcon(new ImageIcon(getClass().getResource("habitants.png")));
+		biens = new JMenu("0         ");
+		biens.setIcon(new ImageIcon(getClass().getResource("biens.png")));
+		
 		menu.addActionListener(ctrljeu);
 		jouer = new JMenuItem("Jouer une partie");
 		jouer.addActionListener(ctrljeu);
@@ -78,6 +89,9 @@ public class FenetreJeu extends JFrame
 		menu.add(quitter);
 		bar.add(menu);
 		bar.add(clock);
+		bar.add(argent);
+		bar.add(habitants);
+		bar.add(biens);
 		setJMenuBar(bar);
 
 	}
@@ -92,6 +106,20 @@ public class FenetreJeu extends JFrame
 		return jeu;
 	}
 
+	public JMenu getArgent() 
+	{
+		return argent;
+	}
+
+	public JMenu getHabitants() 
+	{
+		return habitants;
+	}
+	
+	public JMenu getBiens() 
+	{
+		return biens;
+	}
 
 
 }

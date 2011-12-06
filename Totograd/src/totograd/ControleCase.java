@@ -31,14 +31,28 @@ public class ControleCase extends JFrame implements MouseListener, ActionListene
 		{
 			if(pancase.getBackground() == Color.GRAY)
 				pancase.AfficheErreur("Cette case est deja occupe par une foret (lol)", "Attention");
+			else
+			{
+				if(e.getButton() == e.BUTTON3)
+				{
+					pancase.getConstruire().setEnabled(false);
+					pancase.getDetruire().setEnabled(true);
+					pancase.getPopup().show(pancase, e.getX(), e.getY());
+				}
+			}
 		}
 		else
 		{
-			pancase.getConstruire().setEnabled(true);
-			pancase.getDetruire().setEnabled(true);
+
 			if(e.getButton() == e.BUTTON3)
 			{
+				pancase.getConstruire().setEnabled(true);
+				pancase.getDetruire().setEnabled(true);
 				pancase.getPopup().show(pancase, e.getX(), e.getY());
+			}
+			else
+			{
+				
 			}
 		}
 	}
@@ -76,11 +90,11 @@ public class ControleCase extends JFrame implements MouseListener, ActionListene
 		String source = ae.getActionCommand();
 		if(source.equals("Construire un batiment"))
 		{
-			new FenetreConstructions();
+			new FenetreConstructions(pancase);
 		}
 		else if(source.equals("Detruire le batiment"))
 		{
-			
+			pancase.getConstruction().detruire();
 		}
 	}
 
