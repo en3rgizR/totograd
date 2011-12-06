@@ -50,7 +50,7 @@ public class FenetreConstructions extends JDialog{
                 pmaison.add(cbmaison);
                 pHabitations.add(pmaison);              
                 pimmeuble = new JPanel(new FlowLayout());
-                cbimmeuble = new JButton("Immeuble");
+                cbimmeuble = new JButton("HLM");
                 cbimmeuble.addActionListener(fc);
                 pimmeuble.add(cbimmeuble);
                 pHabitations.add(pimmeuble);
@@ -68,12 +68,12 @@ public class FenetreConstructions extends JDialog{
                 pmairie.add(cbmairie);
                 pServicesPubliques.add(pmairie);
                 ppompier = new JPanel(new FlowLayout());
-                cbpompier = new JButton("Pompier");
+                cbpompier = new JButton("Caserne de pompiers");
                 cbpompier.addActionListener(fc);
                 ppompier.add(cbpompier);
                 pServicesPubliques.add(ppompier);
                 phopital = new JPanel(new FlowLayout());
-                cbhopital = new JButton("Hopital");
+                cbhopital = new JButton("Hôpital");
                 cbhopital.addActionListener(fc);
                 phopital.add(cbhopital);
                 pServicesPubliques.add(phopital);

@@ -1,16 +1,8 @@
 package totograd;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Insets;
-
-import javax.swing.*;
-import javax.swing.border.Border;
-
 import java.awt.*;
+import javax.swing.*;
 import java.awt.event.*;
-
 
 class Case extends JPanel
 { 
@@ -19,9 +11,9 @@ class Case extends JPanel
 	 */
 	private final Color couleur;
 	private boolean click;
-	private static boolean clicked=false;
+	private static boolean clicked = false;
 	public final int x,y;
-	private static Case destination=null;
+	private static Case destination = null;
 	private boolean occupe=false;
 	private ControleCase ctrlcase;
 	private JPopupMenu popup;
@@ -38,7 +30,7 @@ class Case extends JPanel
 		// les dimensions de la case
 		setSize(getPreferredSize());
 		setBorder(BorderFactory.createLineBorder(Color.black));
-		// les évènements souris sur la case sont écoutés par la case elle-même
+		// les ï¿½vï¿½nements souris sur la case sont ï¿½coutï¿½s par la case elle-mï¿½me
 		ctrlcase = new ControleCase(this);
 		addMouseListener(ctrlcase);
 		couleur=c;
@@ -49,7 +41,7 @@ class Case extends JPanel
 		creerMenuContextuel();
 	}
 
-	// cette fonction remet la case à sa couleur d'origine
+	// cette fonction remet la case ï¿½ sa couleur d'origine
 	public void ResetColor()
 	{
 		setBackground(couleur);
@@ -58,7 +50,7 @@ class Case extends JPanel
 
 
 
-	// la méthode paintComponent gère 
+	// la mï¿½thode paintComponent gï¿½re 
 	// l'affichage de la case
 	public void paintComponent(Graphics g)
 	{

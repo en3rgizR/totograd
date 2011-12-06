@@ -39,14 +39,23 @@ public class AiredeJeu extends JPanel
 		}
 		
 		// On va generer des cases occupes aleatoires (5% au plus des cases totale d'une partie)
-		int nbre_random = (int)(Math.random()*((longueur*longueur) * 5/100));
-		int randomx, randomy;
-		for(i=0; i < nbre_random; i++)
+		int nbre_random_foret = (int)(Math.random()*((longueur*longueur) * 5/100));
+		int random_foret_x, random_foret_y;
+		for(i=0; i < nbre_random_foret; i++)
 		{
-			randomx = (int) (Math.random()*longueur);
-			randomy = (int) (Math.random()*longueur);
-			quadrillage[randomx][randomy].setBackground(Color.GRAY);
-			quadrillage[randomx][randomy].setOccupe(true);
+			random_foret_x = (int) (Math.random()*longueur);
+			random_foret_y = (int) (Math.random()*longueur);
+			quadrillage[random_foret_x][random_foret_y].setBackground(Color.GRAY);
+			quadrillage[random_foret_x][random_foret_y].setOccupe(true);
+		}
+		int nbre_random_lac = (int)(Math.random()*((longueur*longueur) * 5/100));
+		int random_lac_x, random_lac_y;
+		for(i=0; i < nbre_random_lac; i++)
+		{
+			random_lac_x = (int) (Math.random()*longueur);
+			random_lac_y = (int) (Math.random()*longueur);
+			quadrillage[random_lac_x][random_lac_y].setBackground(Color.CYAN);
+			quadrillage[random_lac_x][random_lac_y].setOccupe(true);
 		}
 	}
 	

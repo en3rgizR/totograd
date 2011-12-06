@@ -1,12 +1,12 @@
 package totograd;
 
 import java.awt.event.*;
-import javax.swing.event.*;
 
 public class ControleConstr implements ActionListener {
 	
 	private FenetreConstructions constr;
 	private String bat;
+	private Case c;
 	
 	public ControleConstr(FenetreConstructions constr)
 	{
@@ -22,11 +22,31 @@ public class ControleConstr implements ActionListener {
 		{
 			if (s.equals("Maison"))
 			{
-				
+				new Maison(c);
 			}
-			else if (s.equals(""))
+			else if (s.equals("HLM"))
+			{
+				new HLM(c);
+			}
+			else if (s.equals("Villa"))
+			{
+				new Villa(c);
+			}
+			else if (s.equals("Mairie"))
+			{
+				//new Mairie(c);
+			}
+			else if (s.equals("Caserne de pompiers"))
 			{
 				
+			}
+			else if (s.equals("Hôpital"))
+			{
+				
+			}
+			else if (s.equals("Route"))
+			{
+				new Route(c);
 			}
 		}
 	}

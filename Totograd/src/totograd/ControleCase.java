@@ -1,12 +1,8 @@
 package totograd;
 
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
 public class ControleCase extends JFrame implements MouseListener, ActionListener
 {
@@ -21,13 +17,14 @@ public class ControleCase extends JFrame implements MouseListener, ActionListene
 	
 	public void mouseClicked(MouseEvent e) 
 	{
-		if( pancase.getOccupe() )
+		if (pancase.getOccupe())
 		{
-			if(pancase.getBackground() == Color.GRAY)
+			if (pancase.getBackground() == Color.GRAY)
 				pancase.AfficheErreur("Cette case est deja occupe par une foret (lol)", "Attention");
-			else
+			else if (pancase.getBackground() == Color.CYAN)
+				pancase.AfficheErreur("Cette case est deja occupe par un lac (trolol)", "Attention");
 			{
-				if(e.getButton() == e.BUTTON3)
+				if (e.getButton() == e.BUTTON3)
 				{
 					pancase.getConstruire().setEnabled(false);
 					pancase.getDetruire().setEnabled(true);
@@ -48,7 +45,7 @@ public class ControleCase extends JFrame implements MouseListener, ActionListene
 				/*pancase.getConstruire().setEnabled(true);
 				pancase.getDetruire().setEnabled(true);
 				pancase.getPopup().show(pancase, e.getX(), e.getY());*/
-				Immeuble i = new Immeuble(pancase);
+				Villa i = new Villa(pancase);
 
 			}
 			else
