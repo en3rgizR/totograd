@@ -1,16 +1,8 @@
 package totograd;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.util.Hashtable;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class FenetreJeu extends JFrame
@@ -24,6 +16,7 @@ public class FenetreJeu extends JFrame
 	public JMenu argent;
 	public JMenu habitants;
 	public JMenu biens;
+	public JMenu attractivite;
 	private Hashtable<String, Integer> bestScores;
 	private ControleJeu ctrljeu;
 	public JPanel panmain;
@@ -76,6 +69,8 @@ public class FenetreJeu extends JFrame
 		habitants.setIcon(new ImageIcon(getClass().getResource("habitants.png")));
 		biens = new JMenu("0         ");
 		biens.setIcon(new ImageIcon(getClass().getResource("biens.png")));
+		attractivite = new JMenu("0			");
+		attractivite.setIcon(new ImageIcon(getClass().getResource("attractivite.png")));
 		
 		menu.addActionListener(ctrljeu);
 		jouer = new JMenuItem("Jouer une partie");
@@ -92,6 +87,7 @@ public class FenetreJeu extends JFrame
 		bar.add(argent);
 		bar.add(habitants);
 		bar.add(biens);
+		bar.add(attractivite);
 		setJMenuBar(bar);
 
 	}
@@ -120,7 +116,11 @@ public class FenetreJeu extends JFrame
 	{
 		return biens;
 	}
-
+	
+	public JMenu getAttractivite()
+	{
+		return attractivite;
+	}
 
 }
 

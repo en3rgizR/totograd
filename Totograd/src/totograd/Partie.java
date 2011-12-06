@@ -123,43 +123,30 @@ public class Partie
 	{
 		int tmp;
 		
-		if(operation) // Construction
+		if (operation)
 			tmp = argent - cout;
-		else // Destruction
+		else
 			tmp = argent - ((int)cout/4);
 			
 		argent = tmp;
 		getFenJeu().argent.setText(""+tmp);
 	}
-	
-	public void MajCapacite(int capa, boolean addition)
+
+	public void MajAttractivite(float attract, boolean operation)
 	{
-		int tmp=0;
+		float tmp;
 		
-		if(addition)
-			tmp = capa + nbhabitants;
-		else
-			tmp = nbhabitants - capa;
-		nbhabitants = tmp;
-		getFenJeu().habitants.setText(habitant_courant+"/"+tmp);;
-	}
-	
-	public void setLoyerTotal(int l, boolean addition)
-	{
-		if(addition)
-		{
-			loyer_total +=l;
-			System.out.println("loyer_total addition : "+loyer_total);
-		}
+		if (operation)
+			tmp = attractivite + attract;
 		else
 		{
-			System.out.println("loyer_total soustraction :  "+loyer_total+" l : "+l);
-			loyer_total -= l;
+			tmp = attractivite - attract;
+			if (tmp <= 0)
+				tmp = 0;
 		}
+			
+		attractivite = tmp;
+		getFenJeu().attractivite.setText(""+tmp);
 	}
 	
-	public int getLoyerTotal()
-	{
-		return loyer_total;
-	}
-}
+} 

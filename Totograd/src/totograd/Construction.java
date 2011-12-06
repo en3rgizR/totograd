@@ -1,7 +1,6 @@
 package totograd;
 
-import java.awt.Color;
-
+import java.awt.*;
 
 abstract class Construction 
 {
@@ -11,7 +10,7 @@ abstract class Construction
 	int largeur;
 	Case case_const;
 	Case[] zonecase_const;
-	boolean is_construit=true;
+	boolean is_construit = true;
 
 
 	Construction(int cout_argent, Color color_construc, int longueur, int largeur, Case case_const)
@@ -23,6 +22,9 @@ abstract class Construction
 		this.case_const = case_const;
 		if(case_const.getAire().getPartie().argent >= cout_argent)
 		{
+<<<<<<< .mine
+			payZone(case_const);
+=======
 			if(longueur > 1 || largeur > 1 )
 			{
 				buildZone(case_const);
@@ -32,6 +34,7 @@ abstract class Construction
 				case_const.setConstruction(this);
 				construire(case_const);
 			}
+>>>>>>> .r18
 		}
 		else
 		{
@@ -99,7 +102,7 @@ abstract class Construction
 
 
 	// Permet de recuperer les references des cases autour, lorsqu'on construit un batiment sur plusieurs cases.
-	public Case[] buildZone( Case centre )
+	public Case[] buildZone(Case centre)
 	{
 		zonecase_const = new Case[longueur*largeur];
 		int i,j;
@@ -133,10 +136,20 @@ abstract class Construction
 		{
 			zonecase_const[i].setConstruction(this);
 			construire(zonecase_const[i]);
+<<<<<<< .mine
+		}		
+=======
 		}
 		case_const.getAire().getPartie().MajArgent(cout_argent, true);
 
+>>>>>>> .r18
 		return zonecase_const;
+	}
+	
+	public void payZone(Case case_const) 
+	{
+		buildZone(case_const);
+		case_const.getAire().getPartie().MajArgent(cout_argent, true);
 	}
 
 
@@ -151,10 +164,17 @@ abstract class Construction
 		for(i=0; i < zonecase_const.length; i++)
 		{
 			detruire(zonecase_const[i]);
+<<<<<<< .mine
+		}
+		case_const.getAire().getPartie().MajArgent(cout_argent, true);
+=======
 		}
 
+>>>>>>> .r18
 	}
 
+<<<<<<< .mine
+=======
 
 	public int getConstrLongueur()
 	{
@@ -166,6 +186,7 @@ abstract class Construction
 		return largeur;
 	}
 
+>>>>>>> .r18
 	abstract int getCapacite();
 	abstract int getLoyer();
 }

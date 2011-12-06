@@ -1,6 +1,6 @@
 package totograd;
 
-import java.awt.Color;
+import java.awt.*;
 
 abstract class Societes
 {

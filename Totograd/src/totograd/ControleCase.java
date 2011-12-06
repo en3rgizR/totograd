@@ -45,7 +45,7 @@ public class ControleCase extends JFrame implements MouseListener, ActionListene
 				/*pancase.getConstruire().setEnabled(true);
 				pancase.getDetruire().setEnabled(true);
 				pancase.getPopup().show(pancase, e.getX(), e.getY());*/
-				Villa i = new Villa(pancase);
+				Mairie i = new Mairie(pancase);
 
 			}
 			else

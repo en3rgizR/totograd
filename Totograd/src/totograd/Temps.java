@@ -6,7 +6,7 @@ import java.util.*;
  * La classe temps permet de lancer un timer qui va :
  * => A partir de la secondes "start"
  * => Toutes les "temps" secondes
- * =====> Lancer la tache de Temptask, qui est threadé par défaut (grace a TimerTask qui implemente runnable)
+ * =====> Lancer la tache de Temptask, qui est threadï¿½ par dï¿½faut (grace a TimerTask qui implemente runnable)
  */
 public class Temps
 {
