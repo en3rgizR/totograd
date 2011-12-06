@@ -12,7 +12,11 @@ public class HLM extends Habitations
 	HLM(Case c) 
 	{
 		super(cout_hlm, revenu_hlm, capacite_hlm, longueur_hlm, largeur_hlm, c);
-		gestionCapacite();
+		if(is_construit)
+		{
+			c.getAire().getPartie().MajCapacite(capacite_hlm, true);
+			c.getAire().getPartie().setLoyerTotal(revenu_hlm, true);
+		}
 	}
 	
 

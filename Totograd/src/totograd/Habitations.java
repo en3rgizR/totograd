@@ -13,6 +13,7 @@ abstract class Habitations extends Batiments
 		super(cout_argent, couleur_habitat, longueur, largeur, c);
 		this.capacite = capacite;
 		this.loyer = loyer;
+		System.out.println("loyer : "+loyer);
 	}
 
 	public int getCapacite()
@@ -22,21 +23,8 @@ abstract class Habitations extends Batiments
 
 	public int getLoyer()
 	{
+		System.out.println("loyer => "+loyer);
 		return loyer;
-	}
-
-
-	public void gestionCapacite()
-	{
-		int tmp;
-		tmp = capacite + _case.getAire().getPartie().nbhabitants;
-		_case.getAire().getPartie().nbhabitants = tmp;
-		_case.getAire().getPartie().getFenJeu().habitants.setText(_case.getAire().getPartie().habitant_courant+"/"+tmp);;
-	}
-
-	public void gestionLoyer()
-	{
-		_case.getAire().setLoyerTotale(loyer);
 	}
 
 }

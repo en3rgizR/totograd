@@ -23,6 +23,7 @@ public class Partie
 	public int jour;
 	public int mois;
 	public int annee;
+	private int loyer_total;
 	private FenetreJeu fenjeu;
 
 
@@ -34,7 +35,7 @@ public class Partie
 		this.nbhabitants = nbhabitants;
 		this.joueur = joueur;
 		this.fenjeu = fenjeu;
-		habitant_courant = 0;
+		habitant_courant = loyer_total = 0;
 		creerAire(type.toString());
 		attractivite = 1;
 		jour = mois = 1;
@@ -118,5 +119,47 @@ public class Partie
 		return aire;
 	}
 
+	public void MajArgent(int cout, boolean operation)
+	{
+		int tmp;
+		
+		if(operation) // Construction
+			tmp = argent - cout;
+		else // Destruction
+			tmp = argent - ((int)cout/4);
+			
+		argent = tmp;
+		getFenJeu().argent.setText(""+tmp);
+	}
 	
+	public void MajCapacite(int capa, boolean addition)
+	{
+		int tmp=0;
+		
+		if(addition)
+			tmp = capa + nbhabitants;
+		else
+			tmp = nbhabitants - capa;
+		nbhabitants = tmp;
+		getFenJeu().habitants.setText(habitant_courant+"/"+tmp);;
+	}
+	
+	public void setLoyerTotal(int l, boolean addition)
+	{
+		if(addition)
+		{
+			loyer_total +=l;
+			System.out.println("loyer_total addition : "+loyer_total);
+		}
+		else
+		{
+			System.out.println("loyer_total soustraction :  "+loyer_total+" l : "+l);
+			loyer_total -= l;
+		}
+	}
+	
+	public int getLoyerTotal()
+	{
+		return loyer_total;
+	}
 }

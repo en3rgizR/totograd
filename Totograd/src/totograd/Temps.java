@@ -73,13 +73,15 @@ public class Temps
 				partie.habitant_courant += new_habitant;
 				partie.getFenJeu().habitants.setText(partie.habitant_courant+"/"+partie.nbhabitants);
 			}
+
 		}
 		
 		public void majLoyer()
 		{
 			if(partie.jour == 14 || partie.jour == 28)
 			{
-				partie.argent += partie.getAire().getLoyerTotal();
+				System.out.println("loyer total : "+partie.getLoyerTotal());
+				partie.argent += partie.getLoyerTotal();
 				partie.getFenJeu().argent.setText(""+partie.argent);
 			}
 		}

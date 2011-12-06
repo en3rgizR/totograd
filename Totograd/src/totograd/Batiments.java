@@ -12,8 +12,7 @@ abstract class Batiments extends Construction
 	int r_personnes;
 	Case _case;
 	Case[] zone_case;
-	int loyer;
-	int capacite_max;
+
 	
 	
 	// Constructeur specialise dans les habitations (rappel : r_argent designe la taxe d'habitation)

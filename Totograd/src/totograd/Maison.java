@@ -11,6 +11,10 @@ public class Maison extends Habitations
 	Maison(Case c) 
 	{
 		super(cout_maison, revenu_maison, capacite_maison, longueur_maison, largeur_maison, c);
-		gestionCapacite();
+		if(is_construit)
+		{
+			c.getAire().getPartie().MajCapacite(capacite_maison, true);
+			c.getAire().getPartie().setLoyerTotal(revenu_maison, true);
+		}
 	}
 }

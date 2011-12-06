@@ -9,8 +9,20 @@ public class Route extends Construction
 	private final static int longueur = 1;
 	private final static int largeur = 1;
 	
+
 	Route(Case c)
 	{
 		super(cout, color_route, longueur, largeur, c);
-	}	
+	}
+
+	int getCapacite() 
+	{
+		return 0;
+	}
+	
+	int getLoyer()
+	{
+		return 0;
+	}
+	
 }

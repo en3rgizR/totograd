@@ -13,6 +13,7 @@ abstract class Construction
 	Case[] zonecase_const;
 	boolean is_construit=true;
 
+
 	Construction(int cout_argent, Color color_construc, int longueur, int largeur, Case case_const)
 	{
 		this.cout_argent = cout_argent;
@@ -20,15 +21,24 @@ abstract class Construction
 		this.longueur = longueur;
 		this.largeur = largeur;	
 		this.case_const = case_const;
-		if(longueur > 1 || largeur > 1 )
+		if(case_const.getAire().getPartie().argent >= cout_argent)
 		{
-			buildZone(case_const);
+			if(longueur > 1 || largeur > 1 )
+			{
+				buildZone(case_const);
+			}
+			else
+			{
+				case_const.setConstruction(this);
+				construire(case_const);
+			}
 		}
 		else
 		{
-			case_const.setConstruction(this);
-			construire(case_const);
+			is_construit = false;
+			case_const.AfficheErreur("Vous n'avez pas assez d'argent", "Erreur");
 		}
+
 	}
 
 
@@ -52,28 +62,38 @@ abstract class Construction
 		{
 			c.AfficheErreur("Vous n'avez plus assez d'argent !", "Erreur");
 		}
-
 		return cout_argent;
 	}
+
 
 	// On fera une incrementation de partie.argent !
 	public int detruire(Case c)
 	{
 		int tmp;
-		if(c.getOccupe() == false)
+
+		if(c.getAire().getPartie().argent > (cout_argent/4))
 		{
-			c.AfficheErreur("Impossible de detruire une case inoccupee", "Erreur");
+			if(c.getOccupe() == false)
+			{
+				c.AfficheErreur("Impossible de detruire une case inoccupee", "Erreur");
+			}
+			else
+			{
+				c.setBackground(Color.green);
+				c.setConstruction(null);
+				c.setOccupe(false);
+				if(c.getAire().getPartie().nbhabitants== 0)
+				{
+					c.getAire().getPartie().habitant_courant = 0;
+					c.getAire().getPartie().getFenJeu().habitants.setText("0/0");
+				}
+			}	
 		}
 		else
 		{
-			c.setBackground(Color.green);
-			tmp = case_const.getAire().getPartie().argent - ((int)cout_argent/4);
-			c.getAire().getPartie().argent = tmp;
-			c.getAire().getPartie().getFenJeu().argent.setText(""+tmp);
-			c.setConstruction(null);
-			c.setOccupe(false);
+			c.AfficheErreur("Vous n'avez plus assez d'argent !", "Erreur");
+		}
 
-		}	
 		return (cout_argent/4);
 	}
 
@@ -84,7 +104,7 @@ abstract class Construction
 		zonecase_const = new Case[longueur*largeur];
 		int i,j;
 		int cpt=0;
-		
+
 		for(i=0; i < longueur; i++)
 		{
 			for(j=0; j < largeur; j++)
@@ -95,7 +115,7 @@ abstract class Construction
 					is_construit = false;
 					return null;
 				}
-				
+
 				zonecase_const[cpt]=centre.getAire().getCasePrecise(centre.x + i, centre.y + j);
 
 				if(zonecase_const[cpt].getOccupe())
@@ -114,29 +134,38 @@ abstract class Construction
 			zonecase_const[i].setConstruction(this);
 			construire(zonecase_const[i]);
 		}
+		case_const.getAire().getPartie().MajArgent(cout_argent, true);
 
-		MajAffichage(case_const);
 		return zonecase_const;
-
 	}
 
 
 	public void eraseZone()
 	{
 		int i;
+
+		case_const.getAire().getPartie().MajArgent(cout_argent, false);
+		case_const.getAire().getPartie().MajCapacite(this.getCapacite(), false);
+		case_const.getAire().getPartie().setLoyerTotal(this.getLoyer(), false);
+
 		for(i=0; i < zonecase_const.length; i++)
 		{
 			detruire(zonecase_const[i]);
-		}	
+		}
+
 	}
 
-	public void MajAffichage(Case c)
+
+	public int getConstrLongueur()
 	{
-		int tmp;
-		tmp = case_const.getAire().getPartie().argent - cout_argent;
-		c.getAire().getPartie().argent = tmp;
-		c.getAire().getPartie().getFenJeu().argent.setText(""+tmp);
-	} 
+		return longueur;
+	}
 
+	public int getConstrLargeur()
+	{
+		return largeur;
+	}
 
+	abstract int getCapacite();
+	abstract int getLoyer();
 }
