@@ -12,7 +12,7 @@ public class AiredeJeu extends JPanel
 	private int longueur;
 	private Partie partie;
 	private int loyer_tot;
-	
+
 	public AiredeJeu(int largeur,int longueur, Partie partie)
 	{
 		this.largeur=largeur;
@@ -23,9 +23,9 @@ public class AiredeJeu extends JPanel
 		grille = new GridLayout(longueur, largeur);
 		this.setLayout(grille);
 		Initialize();
-		
+
 	}
-	
+
 	public void Initialize()
 	{
 		int i, j;
@@ -37,7 +37,7 @@ public class AiredeJeu extends JPanel
 				this.add(quadrillage[j][i]);
 			}
 		}
-		
+
 		// On va generer des cases occupes aleatoires (5% au plus des cases totale d'une partie)
 		int nbre_random_foret = (int)(Math.random()*((longueur*longueur) * 5/100));
 		int random_foret_x, random_foret_y;
@@ -58,29 +58,37 @@ public class AiredeJeu extends JPanel
 			quadrillage[random_lac_x][random_lac_y].setOccupe(true);
 		}
 	}
-	
+
 	public Partie getPartie()
 	{
 		return partie;
 	}
-	
+
 	// Retourne la capacite totale de la partie en cours
 	public int getLoyerTotal()
 	{
 		return loyer_tot;
 	}
-	
-	
+
+
 	public void setLoyerTotale(int l)
 	{
 		loyer_tot += l;
-		System.out.println("loyer_tot "+loyer_tot);
 	}
-	
+
 	public Case getCasePrecise(int x, int y)
 	{
 		return quadrillage[x][y];
 	}
-	
+
+	public int getLongueur()
+	{
+		return longueur;
+	}
+
+	public int getLargeur()
+	{
+		return largeur;
+	}
 
 }

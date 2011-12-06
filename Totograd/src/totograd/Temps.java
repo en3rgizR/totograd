@@ -44,7 +44,10 @@ public class Temps
 				partie.jour=1;
 				partie.mois++;
 				if(partie.mois > 12)
+				{	
 					partie.annee++;
+					partie.mois=1;
+				}
 			}
 			if((partie.jour/10) < 1 )
 			{

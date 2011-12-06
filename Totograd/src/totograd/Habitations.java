@@ -36,7 +36,6 @@ abstract class Habitations extends Batiments
 
 	public void gestionLoyer()
 	{
-		System.out.println("gloyer");
 		_case.getAire().setLoyerTotale(loyer);
 	}
 
