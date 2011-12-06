@@ -1,38 +1,34 @@
 package totograd;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
+import javax.swing.event.*;
 
-public class ControleConstr implements ActionListener{
+public class ControleConstr implements ActionListener {
 	
 	private FenetreConstructions constr;
 	private String bat;
 	
 	public ControleConstr(FenetreConstructions constr)
 	{
-		this.constr=constr;
+		this.constr = constr;
 		bat = "";
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e)
+	{
 		String s = e.getActionCommand();
-		if (!s.equals("Ok") && !s.equals("Annuler"))
+		if (!s.equals("Annuler"))
 		{
-			//new HLM(cout_argent, color_construc, r_argent, r_personnes, nbcases_longueur, nbcases_largeur, capacite)
-			
-			/*if(!bat.equals(s))
+			if (s.equals("Maison"))
 			{
-				bat = s;
-				constr.setcb(bat);
+				
 			}
-			else
+			else if (s.equals(""))
 			{
-				bat="";
+				
 			}
-			System.out.println(bat);*/
 		}
-		
 	}
 
 }

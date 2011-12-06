@@ -1,16 +1,7 @@
 package totograd;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.JTabbedPane;
-import javax.swing.SwingConstants;
+import java.awt.*;
+import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class FenetreConstructions extends JDialog{
@@ -18,21 +9,21 @@ public class FenetreConstructions extends JDialog{
         private JTabbedPane tp;
         private JPanel pHabitations;
         private JPanel pServicesPubliques;
-        private JPanel pMagasins;
+        private JPanel pSocietes;
+        private JPanel pInfrastructures;
         private JPanel pmaison;
-        private JCheckBox cbmaison;
+        private JButton cbmaison;
         private JPanel pimmeuble;
-        private JCheckBox cbimmeuble;
+        private JButton cbimmeuble;
         private JPanel proute;
-        private JCheckBox cbroute;
+        private JButton cbroute;
         private JPanel pmairie;
-        private JCheckBox cbmairie;
+        private JButton cbmairie;
         private JPanel ppompier;
-        private JCheckBox cbpompier;
+        private JButton cbpompier;
         private JPanel phopital;
-        private JCheckBox cbhopital;
+        private JButton cbhopital;
         private JPanel panelbas;
-        private JButton ok;
         private JButton annuler;
         private ControleConstr fc;
         private Case case_const;
@@ -48,57 +39,58 @@ public class FenetreConstructions extends JDialog{
         
         public void createInterface()
         {
-                setSize(500,500);
-                tp = new JTabbedPane(SwingConstants.TOP);
+                setSize(450,250);
+                tp = new JTabbedPane(SwingConstants.TOP); 
+                tp.setSize(100,5);
                 //Onglet Habitations
                 pHabitations = new JPanel(new GridLayout(2,1));
                 pmaison = new JPanel(new FlowLayout());;
-                cbmaison = new JCheckBox("Maison");
+                cbmaison = new JButton("Maison");
                 cbmaison.addActionListener(fc);
                 pmaison.add(cbmaison);
                 pHabitations.add(pmaison);              
                 pimmeuble = new JPanel(new FlowLayout());
-                cbimmeuble = new JCheckBox("Immeuble");
+                cbimmeuble = new JButton("Immeuble");
                 cbimmeuble.addActionListener(fc);
                 pimmeuble.add(cbimmeuble);
                 pHabitations.add(pimmeuble);
                 pHabitations.setPreferredSize(new Dimension(300, 80));
                 tp.addTab("Habitations", pHabitations);
                 //Onglet Societes
-                pMagasins = new JPanel();
-                pMagasins.setPreferredSize(new Dimension(300, 80));
-                tp.addTab("Societes", pMagasins);
+                pSocietes = new JPanel();
+                pSocietes.setPreferredSize(new Dimension(300, 80));
+                tp.addTab("Societes", pSocietes);
                 //Onglet Services Publiques
                 pServicesPubliques = new JPanel(new GridLayout(4,1));
-                proute = new JPanel(new FlowLayout());
-                cbroute = new JCheckBox("Route");
-                cbroute.addActionListener(fc);
-                proute.add(cbroute);
-                pServicesPubliques.add(proute);
                 pmairie = new JPanel(new FlowLayout());
-                cbmairie = new JCheckBox("Mairie");
+                cbmairie = new JButton("Mairie");
                 cbmairie.addActionListener(fc);
                 pmairie.add(cbmairie);
                 pServicesPubliques.add(pmairie);
                 ppompier = new JPanel(new FlowLayout());
-                cbpompier = new JCheckBox("Pompier");
+                cbpompier = new JButton("Pompier");
                 cbpompier.addActionListener(fc);
                 ppompier.add(cbpompier);
                 pServicesPubliques.add(ppompier);
                 phopital = new JPanel(new FlowLayout());
-                cbhopital = new JCheckBox("Hopital");
+                cbhopital = new JButton("Hopital");
                 cbhopital.addActionListener(fc);
                 phopital.add(cbhopital);
                 pServicesPubliques.add(phopital);
                 pServicesPubliques.setPreferredSize(new Dimension(300, 80));
                 tp.addTab("Services Publiques", pServicesPubliques);
+                // Onglet Infrastructures
+                pInfrastructures = new JPanel(new GridLayout(1, 1));
+                proute = new JPanel(new FlowLayout());
+                cbroute = new JButton("Route");
+                cbroute.addActionListener(fc);
+                proute.add(cbroute);
+                pInfrastructures.add(proute);
+                tp.addTab("Infrastructures", pInfrastructures);
                 tp.setOpaque(true);
                 add(tp);
                 
                 panelbas = new JPanel(new FlowLayout());
-                ok = new JButton("Ok");
-                ok.addActionListener(fc);
-                panelbas.add(ok);
                 annuler = new JButton("Annuler");
                 annuler.addActionListener(fc);
                 panelbas.add(annuler);
@@ -109,18 +101,30 @@ public class FenetreConstructions extends JDialog{
         	return fc;
         }
         
-        public void setcb(String s){
-        	if (!s.equals(cbmairie.getText())){
+        public void setcb(String s)
+        {
+        	if (!s.equals(cbmairie.getText()))
+        	{
         		cbmairie.setSelected(false);
-        	}else if(!s.equals(cbhopital.getText())){
+        	}
+        	else if(!s.equals(cbhopital.getText()))
+        	{
         		cbhopital.setSelected(false);
-        	}else if (!s.equals(cbimmeuble.getText())){
+        	}
+        	else if (!s.equals(cbimmeuble.getText()))
+        	{
         		cbimmeuble.setSelected(false);
-        	}else if (!s.equals(cbpompier.getText())){
+        	}
+        	else if (!s.equals(cbpompier.getText()))
+        	{
         		cbpompier.setSelected(false);
-        	}else if (!s.equals(cbroute.getText())){
+        	}
+        	else if (!s.equals(cbroute.getText()))
+        	{
         		cbroute.setSelected(false);
-        	}else if (!s.equals(cbmaison.getText())){
+        	}
+        	else if (!s.equals(cbmaison.getText()))
+        	{
         		cbmaison.setSelected(false);
         	}
         }
