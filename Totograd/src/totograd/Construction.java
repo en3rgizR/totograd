@@ -125,9 +125,7 @@ abstract class Construction
 				}
 			}
 		}
-
 		return zone;
-
 	}
 
 }
