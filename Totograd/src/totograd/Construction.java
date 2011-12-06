@@ -22,9 +22,9 @@ abstract class Construction
 		this.case_const = case_const;
 		if(case_const.getAire().getPartie().argent >= cout_argent)
 		{
-<<<<<<< .mine
+
 			payZone(case_const);
-=======
+
 			if(longueur > 1 || largeur > 1 )
 			{
 				buildZone(case_const);
@@ -34,7 +34,7 @@ abstract class Construction
 				case_const.setConstruction(this);
 				construire(case_const);
 			}
->>>>>>> .r18
+
 		}
 		else
 		{
@@ -136,13 +136,10 @@ abstract class Construction
 		{
 			zonecase_const[i].setConstruction(this);
 			construire(zonecase_const[i]);
-<<<<<<< .mine
 		}		
-=======
-		}
+
 		case_const.getAire().getPartie().MajArgent(cout_argent, true);
 
->>>>>>> .r18
 		return zonecase_const;
 	}
 	
@@ -164,17 +161,10 @@ abstract class Construction
 		for(i=0; i < zonecase_const.length; i++)
 		{
 			detruire(zonecase_const[i]);
-<<<<<<< .mine
 		}
 		case_const.getAire().getPartie().MajArgent(cout_argent, true);
-=======
-		}
-
->>>>>>> .r18
 	}
 
-<<<<<<< .mine
-=======
 
 	public int getConstrLongueur()
 	{
@@ -186,7 +176,6 @@ abstract class Construction
 		return largeur;
 	}
 
->>>>>>> .r18
 	abstract int getCapacite();
 	abstract int getLoyer();
 }
