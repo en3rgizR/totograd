@@ -92,7 +92,7 @@ public class ControleCase extends JFrame implements MouseListener, ActionListene
 		}
 		else if(source.equals("Detruire le batiment"))
 		{
-			pancase.getConstruction().detruire();
+			pancase.getConstruction().detruire(pancase);
 		}
 	}
 
