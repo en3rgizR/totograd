@@ -11,6 +11,7 @@ public class AiredeJeu extends JPanel
 	private int largeur;
 	private int longueur;
 	private Partie partie;
+	private int loyer_tot;
 	
 	public AiredeJeu(int largeur,int longueur, Partie partie)
 	{
@@ -18,6 +19,7 @@ public class AiredeJeu extends JPanel
 		this.longueur= longueur;
 		this.partie=partie;
 		this.quadrillage = new Case[largeur][longueur];
+		this.loyer_tot = 0;
 		grille = new GridLayout(longueur, largeur);
 		this.setLayout(grille);
 		Initialize();
@@ -54,25 +56,16 @@ public class AiredeJeu extends JPanel
 	}
 	
 	// Retourne la capacite totale de la partie en cours
-	public int getCapaciteTotale()
+	public int getLoyerTotal()
 	{
-		int i, j;
-		int capacite_totale=0;
-		Habitations tmp;
-		for(i=0; i < largeur; i++)
-		{
-			for(j=0; j < longueur; j++)
-			{
-				// Toutes les cases n'ont pas forcement de construction... donc peuvent etre null !
-				try
-				{
-					tmp = (Habitations) quadrillage[j][i].getConstruction();
-					capacite_totale += tmp.getCapacite();
-				}
-				catch(NullPointerException npe){ }
-			}
-		}
-		return capacite_totale;
+		return loyer_tot;
+	}
+	
+	
+	public void setLoyerTotale(int l)
+	{
+		loyer_tot += l;
+		System.out.println("loyer_tot "+loyer_tot);
 	}
 	
 	public Case getCasePrecise(int x, int y)

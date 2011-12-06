@@ -19,34 +19,41 @@ abstract class Construction
 		this.longueur = longueur;
 		this.largeur = largeur;	
 		this.case_const = case_const;
-		if(longueur > 1 || largeur > 1 );
+		if(longueur > 1 || largeur > 1 )
+		{
 			this.zonecase_const = buildZone(longueur, largeur, case_const);
+		}
+		else
+		{
+			case_const.setConstruction(this);
+			construire(case_const);
+		}
 	}
 
 
 	// On fera une decrementation de partie.argent.
 	// Si partie.argent < 0 => on genera une erreur ( a voir dans la construction donc)
-	public int construire()
+	public int construire(Case c)
 	{
 		int tmp;
 
-		if(case_const.getAire().getPartie().argent > cout_argent)
+		if(c.getAire().getPartie().argent > cout_argent)
 		{
 
-			if(case_const.getOccupe() == true)
-				case_const.AfficheErreur("Construction impossible, case deja occupe", "Erreur");
+			if(c.getOccupe() == true)
+				c.AfficheErreur("Construction impossible, case deja occupe", "Erreur");
 			else
 			{
-				case_const.setBackground(color_construc);
-				case_const.setOccupe(true);
+				c.setBackground(color_construc);
+				c.setOccupe(true);
 			}
-			tmp = case_const.getAire().getPartie().argent - cout_argent;
+			/*tmp = case_const.getAire().getPartie().argent - cout_argent;
 			case_const.getAire().getPartie().argent = tmp;
-			case_const.getAire().getPartie().getFenJeu().argent.setText(""+tmp);
+			case_const.getAire().getPartie().getFenJeu().argent.setText(""+tmp);*/
 		}
 		else
 		{
-			case_const.AfficheErreur("Vous n'avez plus assez d'argent !", "Erreur");
+			c.AfficheErreur("Vous n'avez plus assez d'argent !", "Erreur");
 
 		}
 		return cout_argent;
@@ -56,32 +63,34 @@ abstract class Construction
 	// On fera une incrementation de partie.argent !
 	public int detruire()
 	{
+		System.out.println("case_const : "+case_const);
 		int tmp;
 		if(case_const.getOccupe() == false)
+		{
 			case_const.AfficheErreur("Impossible de detruire une case inoccupee", "Erreur");
+		}
 		else
 		{
 			case_const.setBackground(Color.green);
 			tmp = case_const.getAire().getPartie().argent - ((int)cout_argent/4);
 			case_const.getAire().getPartie().argent = tmp;
 			case_const.getAire().getPartie().getFenJeu().argent.setText(""+tmp);
+			case_const.setConstruction(null);
+			
 		}
 		return (cout_argent/4);
 	}
 
-	
+
 	// Permet de recuperer les references des cases autour, lorsqu'on construit un batiment sur plusieurs cases.
 	public Case[] buildZone(int longueur, int largeur, Case centre)
 	{
-		
 		Case[] zone = new Case[longueur*largeur];
 		int i,j;
 		int cpt=0;
-
 		int lon_arr, lon_avt;
-		int larg_arr, larg_avt;
-
-
+		int larg_arr, larg_avt;		
+		
 		if((longueur%2) == 0)
 		{
 			lon_arr= (longueur/2)-1;
@@ -89,7 +98,7 @@ abstract class Construction
 		}
 		else
 		{
-			lon_arr = lon_avt = (int) Math.floor(longueur);
+			lon_arr = lon_avt = (int) Math.floor(longueur/2);
 		}
 
 		if((largeur%2) == 0)
@@ -99,7 +108,7 @@ abstract class Construction
 		}
 		else
 		{
-			larg_arr = larg_avt = (int) Math.floor(largeur);
+			larg_arr = larg_avt = (int) Math.floor(largeur/2);
 		}
 
 		// On balaye les cases arrieres
@@ -117,15 +126,29 @@ abstract class Construction
 		{
 			for(j=0; j <= larg_avt; j++)
 			{
-				// On ne reprend pas la position (0,0)
-				if(i!= 0 && j!=0)
-				{
-					zone[cpt]=centre.getAire().getCasePrecise(centre.x - i, centre.y - j);
-					cpt++;
-				}
+				zone[cpt]=centre.getAire().getCasePrecise(centre.x + i, centre.y + j);
+				cpt++;
+				if(i==0 && j==0)
+					cpt--;
 			}
+		}
+
+		// On remplit les cases de la reference de la construction de zone;
+		for(i=0; i < cpt; i++)
+		{
+			zone[i].setConstruction(this);
+			construire(zone[i]);
 		}
 		return zone;
 	}
-
+	
+	
+	public void eraseZone()
+	{
+		int i;
+		for(i=0; i < zonecase_const.length; i++)
+		{
+			zonecase_const[i].getConstruction().detruire();
+		}	
+	}
 }

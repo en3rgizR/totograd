@@ -3,16 +3,10 @@ package totograd;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPopupMenu;
 
 public class ControleCase extends JFrame implements MouseListener, ActionListener
 {
@@ -39,6 +33,11 @@ public class ControleCase extends JFrame implements MouseListener, ActionListene
 					pancase.getDetruire().setEnabled(true);
 					pancase.getPopup().show(pancase, e.getX(), e.getY());
 				}
+				else
+				{
+					pancase.getConstruction().eraseZone();
+
+				}
 			}
 		}
 		else
@@ -46,13 +45,15 @@ public class ControleCase extends JFrame implements MouseListener, ActionListene
 
 			if(e.getButton() == e.BUTTON3)
 			{
-				pancase.getConstruire().setEnabled(true);
+				/*pancase.getConstruire().setEnabled(true);
 				pancase.getDetruire().setEnabled(true);
-				pancase.getPopup().show(pancase, e.getX(), e.getY());
+				pancase.getPopup().show(pancase, e.getX(), e.getY());*/
+				Immeuble i = new Immeuble(pancase);
+
 			}
 			else
 			{
-				
+				System.out.println("c : "+pancase.getConstruction());
 			}
 		}
 	}

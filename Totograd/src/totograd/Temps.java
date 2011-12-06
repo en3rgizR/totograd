@@ -15,7 +15,7 @@ public class Temps
 	public Temps(int start, int temps, FenetreJeu fenjeu, Partie partie) 
 	{
 		timer = new Timer();
-		timer.scheduleAtFixedRate(new TempsTask(fenjeu, partie), start, temps * 1000); // 1000 car Millisecondes ! 
+		timer.scheduleAtFixedRate(new TempsTask(fenjeu, partie), start, temps * 200); // 1000 car Millisecondes ! 
 	}
 
 	public class TempsTask extends TimerTask 
@@ -32,7 +32,7 @@ public class Temps
 		{
 			majClock();
 			majHabitant();
-
+			majLoyer();
 		}
 
 		public void majClock()
@@ -64,16 +64,22 @@ public class Temps
 
 		public void majHabitant()
 		{
-			System.out.println("capacitetotale : "+partie.getAire().getCapaciteTotale());
-			if(partie.getAire().getCapaciteTotale() > partie.habitant_courant)
+			if(partie.nbhabitants > partie.habitant_courant)
 			{
 				int new_habitant= Math.round( (partie.nbhabitants * (partie.attractivite/100)) );
-				System.out.println("new_habitant "+new_habitant);
 				partie.habitant_courant += new_habitant;
 				partie.getFenJeu().habitants.setText(partie.habitant_courant+"/"+partie.nbhabitants);
 			}
 		}
-
+		
+		public void majLoyer()
+		{
+			if(partie.jour == 14 || partie.jour == 28)
+			{
+				partie.argent += partie.getAire().getLoyerTotal();
+				partie.getFenJeu().argent.setText(""+partie.argent);
+			}
+		}
 	}
 
 }
